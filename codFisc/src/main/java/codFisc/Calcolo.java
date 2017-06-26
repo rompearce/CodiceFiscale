@@ -1,5 +1,7 @@
 package codFisc;
 
+import java.util.List;
+
 public class Calcolo {
 
 	/*calcolo prime 3 lettere Nome*/
@@ -118,6 +120,15 @@ public class Calcolo {
 		
 	}
 
+	
+public List<CodiceFiscale> listaCodici(ServicesCrud crud){
+		List<CodiceFiscale> listaCodici = crud.jpaRead("select p from CodiceFiscale p ").getResultList();
+		
+				return listaCodici;
+		
+	}
+	
+	
 	public String controllo (String codiceDaControllare){
 		/*Carattere di controllo*/
 		int sommaPari=0;

@@ -2,7 +2,9 @@ package codFisc;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +26,15 @@ public class ServletDati extends HttpServlet {
 		String comune= req.getParameter("comuneNascita");
 		String codiceDaControllare="";
 		
-		
+		List<CodiceFiscale> listaCodici = calcolo.listaCodici(crud);
+		for (CodiceFiscale codiceFiscale : listaCodici) {
+			if (codiceFiscale.getNome().equalsIgnoreCase(nome)&&codiceFiscale.getCognome().equalsIgnoreCase(cognome)&&codiceFiscale.getDataNascita().equalsIgnoreCase(data)&&codiceFiscale.getComuneNascita().equalsIgnoreCase(comune)) {
+				String codEsistente =codiceFiscale.getFiscal();
+				req.setAttribute("codEsistente", codEsistente);
+				RequestDispatcher disp = req.getRequestDispatcher("codesiste.jsp");
+				disp.forward(req, resp);
+			}
+		}
 		
 		System.out.println(nome);
 		System.out.println(cognome);
@@ -45,12 +55,17 @@ public class ServletDati extends HttpServlet {
 			String comuneCod = calcolo.codiceDaComune(comune, crud);
 			codiceDaControllare=nomeCod+cognomeCod+dataCod+comuneCod;
 			String codiceDaInserire=calcolo.controllo(codiceDaControllare);
+			
+			
+			
 			codiceFiscale.setFiscal(codiceDaInserire);
 			crud.jpaCreate(codiceFiscale);
+		}else{
 			
 			
 		}
 		
+	}		
+		
 	}
 
-}
