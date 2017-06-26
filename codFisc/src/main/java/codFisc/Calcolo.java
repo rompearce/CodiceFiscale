@@ -81,7 +81,7 @@ public class Calcolo {
 		String dataCodFiscale="";
 		/* Calcolo anno */
 		dataCodFiscale+=dataInserita.substring(8,10);
-		/*Mese*/
+		/* Calcolo Mese*/
 		int mese=0;
 		if (dataInserita.charAt(3)== '0') mese = Integer.parseInt(dataInserita.substring(4,5));
 		else mese = Integer.parseInt(dataInserita.substring(3,5));
@@ -99,7 +99,7 @@ public class Calcolo {
 		case 11: {dataCodFiscale+="S";break;}
 		case 12: {dataCodFiscale+="T";break;}
 		}
-		/*giorno*/
+		/*Calcolo giorno*/
 		int giorno=0;
 		if (dataInserita.charAt(0)== '0') giorno = Integer.parseInt(dataInserita.substring(0,1));
 		else giorno = Integer.parseInt(dataInserita.substring(0,2));
