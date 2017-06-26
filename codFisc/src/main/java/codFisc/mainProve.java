@@ -12,9 +12,13 @@ public class mainProve {
 		String nomeCalcolato = calcolo.calcoloNome(nome);
 		String cognomeCalcolato = calcolo.calcoloCognome(cognome);
 		String dataCalcolata = calcolo.calcoloDataNascita(data, sessoInserito);
+		String cod = nomeCalcolato+cognomeCalcolato+dataCalcolata;
+		
 		System.out.println(nomeCalcolato);
 		System.out.println(cognomeCalcolato);
 		System.out.println(dataCalcolata);
+		System.out.println(cod);
+		
 	}
 
 }

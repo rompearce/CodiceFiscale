@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ServletHome extends HttpServlet {
 	
+	ServicesCrud crud = new ServicesCrud("fiscale");
+	GestioneComune gest = new GestioneComune();
+	
 	String selezione = "0";
 	String generaCodice = "genera";
 	String resetCodice = "reset";
@@ -19,6 +22,8 @@ public class ServletHome extends HttpServlet {
 		String scelta = req.getParameter("sceltaHome");
 		if (scelta.equalsIgnoreCase(generaCodice)) {
 			req.setAttribute("selezione", selezione);
+			List<String> listaComuni=  gest.listaComuni(crud);
+			req.setAttribute("listaComuni", listaComuni);
 			RequestDispatcher disp = req.getRequestDispatcher("dati.jsp");
 			disp.forward(req, resp);
 		}if (scelta.equalsIgnoreCase(resetCodice)) {
